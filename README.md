@@ -51,6 +51,7 @@ You will need to have the game [Transformice](https://store.steampowered.com/app
 Now that the code is running, all mices except the shaman can throw snowballs using the spacebar.
 Every time the shaman summons an object, snow will fall.
 Players can use the command `!power [number]` to modify the knockback power of snowballs.
+When a player's name is written, the player will use confetti.
 
 ## License
 

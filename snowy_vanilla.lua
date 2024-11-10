@@ -2,9 +2,9 @@
 ########################## setup ##########################
 ]]--
 
-function main() -- Fonction de lancement du module
+function main() 
     tfm.exec.disableAutoNewGame(true)
-    -- tfm.exec.disableAutoShaman(true)
+    system.disableChatCommandDisplay("power", true)
 
     mapList = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 17, 14, 33, 104 } -- Création de la liste de cartes
     lastSnowball = {}
@@ -12,11 +12,10 @@ function main() -- Fonction de lancement du module
     snowballPower = 5
 
     for playerName in pairs(tfm.get.room.playerList) do
-            eventNewPlayer(playerName)
-        end
+        eventNewPlayer(playerName)
+    end
 
-        tfm.exec.newGame(mapList[math.random(#mapList)])
-        system.disableChatCommandDisplay("power", true)
+    tfm.exec.newGame(mapList[math.random(#mapList)])
 end
  
 function eventNewPlayer(playerName)
@@ -99,13 +98,24 @@ end
 function eventChatCommand(name, command)
 
     local listeMots = {}
-    for word in command:gmatch( '%S+' ) do -- On liste les mots de la commande
+    for word in command:gmatch( '%S+' ) do
         table.insert(listeMots, word)
     end
 
     if listeMots[1] == 'power' then 
         snowballPower = listeMots[2]
         tfm.exec.snow(0,snowballPower)
+    end
+end
+
+function eventChatMessage(playerName, message)
+
+    for word in message:gmatch( '%S+' ) do
+        for playerName in pairs(tfm.get.room.playerList) do
+            if (word==playerName or word==playerName:sub(1,-6)) then
+                tfm.exec.playEmote(playerName,9)
+            end
+        end
     end
 end
 
