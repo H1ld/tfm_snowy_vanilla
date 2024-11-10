@@ -19,7 +19,6 @@ function main()
 end
  
 function eventNewPlayer(playerName)
-    system.bindMouse(playerName, true)
     tfm.exec.bindKeyboard(playerName, 32, true, true)  -- espace
     tfm.exec.bindKeyboard(playerName, 40, true, true)  -- flèche bas
     tfm.exec.bindKeyboard(playerName, 40, false, true) -- flèche bas
