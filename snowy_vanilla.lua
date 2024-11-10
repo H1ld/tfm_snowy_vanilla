@@ -89,10 +89,8 @@ function eventKeyboard(playerName, key, down, x, y)
     end
 end
 
-function eventMouse(playerName, xMousePosition, yMousePosition)
-    if (tfm.get.room.playerList[playerName].isShaman ) then
-        tfm.exec.snow(5,snowballPower)
-    end
+function  eventSummoningStart (playerName, objectType, xPosition, yPosition, angle)
+    tfm.exec.snow(5,snowballPower)
 end
 
 function eventChatCommand(name, command)
